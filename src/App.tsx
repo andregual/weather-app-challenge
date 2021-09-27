@@ -3,6 +3,8 @@ import GlobalStyle from './styles/global';
 import styled from 'styled-components';
 import cloudBackground from './assets/images/Cloud-background.png';
 import LightCloud from './assets/images/LightCloud.png';
+import Content from './components/Content';
+import HeaderButton from './components/Button';
 
 // sidebar
 
@@ -21,15 +23,6 @@ const HeaderContainer = styled.div`
   padding: 2rem;
 `;
 
-const HeaderButton = styled.div`
-  background: #6e707a;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-`;
-
 const SearchButton = styled(HeaderButton)`
   width: 160px;
   height: 40px;
@@ -42,7 +35,7 @@ const LocationButton = styled(HeaderButton)`
   border-radius: 50%;
 `;
 
-const ImageContainer = styled.div`  
+const ImageContainer = styled.div`
   height: 350px;
   width: 100%;
   background-size: contain;
@@ -110,41 +103,46 @@ const City = styled.p`
   margin-left: 1rem;
 `;
 
-// content
+// some other
 
-const ContentContainer = styled.div``;
+const GlobalWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
 
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Sidebar>
-        <HeaderContainer>
-          <SearchButton>Search for places</SearchButton>
-          <LocationButton></LocationButton>
-        </HeaderContainer>
+      <GlobalWrapper>
+        <Sidebar>
+          <HeaderContainer>
+            <SearchButton>Search for places</SearchButton>
+            <LocationButton></LocationButton>
+          </HeaderContainer>
 
-        <ImageContainer>
-          <WeatherImage src={LightCloud} alt=''></WeatherImage>
-        </ImageContainer>
+          <ImageContainer>
+            <WeatherImage src={LightCloud} alt=''></WeatherImage>
+          </ImageContainer>
 
-        <InformationContainer>
-          <Temperature>15ºC</Temperature>
-          <TemperatureDescription>Shower</TemperatureDescription>
-          <FooterContainter>
-            <DateContainer>
-              <Today>Today</Today>
-              <Date>Fri. 5 jun</Date>
-            </DateContainer>
-            <LocationContainer>
-              <Icon>*</Icon>
-              <City>Helsinki</City>
-            </LocationContainer>
-          </FooterContainter>
-        </InformationContainer>
-      </Sidebar>
+          <InformationContainer>
+            <Temperature>15ºC</Temperature>
+            <TemperatureDescription>Shower</TemperatureDescription>
+            <FooterContainter>
+              <DateContainer>
+                <Today>Today</Today>
+                <Date>Fri. 5 jun</Date>
+              </DateContainer>
+              <LocationContainer>
+                <Icon>*</Icon>
+                <City>Helsinki</City>
+              </LocationContainer>
+            </FooterContainter>
+          </InformationContainer>
+        </Sidebar>
 
-      <ContentContainer></ContentContainer>
+        <Content></Content>
+      </GlobalWrapper>
     </>
   );
 }
