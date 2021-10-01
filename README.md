@@ -8,7 +8,7 @@ The website allows you to search the weather for your intended location (with a 
 
 ## API
 
-https://www.metaweather.com/api/
+https://openweathermap.org/api
 
 ## Used Technologies & Libraries
 
