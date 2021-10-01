@@ -32,12 +32,7 @@ const MinTemperature = styled.div``;
 const HighlightCard = () => {
   return (
     <Wrapper>
-      <Day>Tomorrow</Day>
-      <Image src={Clear}></Image>
-      <TemperatureContainer>
-        <MaxTemperature>16ºC</MaxTemperature>
-        <MinTemperature>11ºC</MinTemperature>
-      </TemperatureContainer>
+     
     </Wrapper>
   );
 };

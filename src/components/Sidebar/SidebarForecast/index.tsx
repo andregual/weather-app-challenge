@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext } from 'react';
 import {
   HeaderContainer,
   SearchButton,
@@ -17,27 +17,25 @@ import {
   City,
 } from './SidebarElements';
 import LightCloud from '../../../assets/images/LightCloud.png';
-import useHttp from '../../../hooks/useHttp';
-import { getCurrentForecast } from '../../../api/api';
+import { ForecastContext } from '../../../context/forecast-context';
+import { UnitContext } from '../../../context/unit-context';
 
 const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
   children,
   toggleMenu,
 }) => {
-  const { sendRequest, status, data, error } = useHttp(
-    getCurrentForecast,
-    false
-  );
-
-  useEffect(() => {
-    sendRequest();
-  }, [sendRequest]);
+  const forecast = useContext(ForecastContext);
+  const unit = useContext(UnitContext);
 
   return (
     <>
       <HeaderContainer>
         <SearchButton onClick={toggleMenu}>Search for places</SearchButton>
-        <LocationButton></LocationButton>
+        <LocationButton
+          onClick={() => {
+            console.log(forecast);
+          }}
+        ></LocationButton>
       </HeaderContainer>
 
       <ImageContainer>
@@ -45,8 +43,13 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
       </ImageContainer>
 
       <InformationContainer>
-        <Temperature>15ºC</Temperature>
-        <TemperatureDescription>Shower</TemperatureDescription>
+        <Temperature>
+          {forecast?.temperature.temp}
+          {unit}
+        </Temperature>
+        <TemperatureDescription>
+          {forecast?.weather.main}
+        </TemperatureDescription>
         <FooterContainter>
           <DateContainer>
             <Today>Today</Today>
@@ -54,7 +57,7 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
           </DateContainer>
           <LocationContainer>
             <Icon>*</Icon>
-            <City>Helsinki</City>
+            <City>{forecast?.name}</City>
           </LocationContainer>
         </FooterContainter>
       </InformationContainer>
