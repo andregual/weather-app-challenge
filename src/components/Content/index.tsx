@@ -68,10 +68,10 @@ const Content = () => {
       <HighlightContainer>
         <HighlightTitle>Today's Highlights</HighlightTitle>
         <HighlightStatistics>
-          <HighlightCard />
-          <HighlightCard />
-          <HighlightCard />
-          <HighlightCard />
+          <HighlightCard highlight='wind' />
+          <HighlightCard highlight='humidity' />
+          <HighlightCard highlight='visibility' />
+          <HighlightCard highlight='airPressure' />
         </HighlightStatistics>
       </HighlightContainer>
     </ContentContainer>

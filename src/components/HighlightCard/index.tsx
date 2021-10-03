@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import Clear from '../../assets/images/Clear.png';
+import { ForecastContext } from '../../context/forecast-context';
+import { getWindDirection } from '../../utils/getWindData';
 
 const Wrapper = styled.div`
   height: auto;
@@ -12,27 +13,59 @@ const Wrapper = styled.div`
   justify-items: center;
 `;
 
-const Day = styled.div``;
-
-const Image = styled.img`
-  height: 62px;
-  width: 62px;
+const CardTitle = styled.p`
+  font-size: 16px;
+  color: #e7e7eb;
 `;
 
-const TemperatureContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-column-gap: 1rem;
+const CardValue = styled.h1`
+  font-size: 64px;
 `;
 
-const MaxTemperature = styled.div``;
+const WindDirectionContainer = styled.div``;
 
-const MinTemperature = styled.div``;
+const WindDirectionIcon = styled.i``;
 
-const HighlightCard = () => {
+const WindDirectionText = styled.p`
+  font-size: 14px;
+`;
+
+const HighlightCard: React.FC<{ highlight: string }> = ({ highlight }) => {
+  const forecastCtx = useContext(ForecastContext);
+
+  if (highlight === 'wind') {
+    return (
+      <Wrapper>
+        <CardTitle>{forecastCtx?.wind.title}</CardTitle>
+        <CardValue>{forecastCtx?.wind.speed}</CardValue>
+        <WindDirectionContainer>
+          <WindDirectionIcon></WindDirectionIcon>
+          <WindDirectionText>
+            {getWindDirection(forecastCtx?.wind.direction)}
+          </WindDirectionText>
+        </WindDirectionContainer>
+      </Wrapper>
+    );
+  } else if (highlight === 'humidity') {
+    return (
+      <Wrapper>
+        <CardTitle>{forecastCtx?.humidity.title}</CardTitle>
+        <CardValue>{forecastCtx?.humidity.value}</CardValue>
+      </Wrapper>
+    );
+  } else if (highlight === 'visibility') {
+    return (
+      <Wrapper>
+        <CardTitle>{forecastCtx?.visibility.title}</CardTitle>
+        <CardValue>{forecastCtx?.visibility.value}</CardValue>
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper>
-     
+      <CardTitle>{forecastCtx?.airPressure.title}</CardTitle>
+      <CardValue>{forecastCtx?.airPressure.value}</CardValue>
     </Wrapper>
   );
 };
