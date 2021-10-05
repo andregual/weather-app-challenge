@@ -4,7 +4,19 @@ import {
   ClosingButton,
   InputContainer,
   CommonContainer,
+  StyledInput,
+  StyledButton,
+  CommonLocation,
+  CommonLocationTitle,
+  CommonLocationArrow,
+  CommonLocations,
 } from './SidebarMenuElements';
+
+const DUMMY_COMMON_LOCATIONS = [
+  { title: 'London' },
+  { title: 'New York' },
+  { title: 'Barcelona' },
+];
 
 const SidebarMenu: React.FC<{ toggleMenu: () => void }> = ({ toggleMenu }) => {
   return (
@@ -13,15 +25,18 @@ const SidebarMenu: React.FC<{ toggleMenu: () => void }> = ({ toggleMenu }) => {
         <ClosingButton onClick={toggleMenu}>X</ClosingButton>
       </ClosingButtonContainer>
       <InputContainer>
-        <input type='text' placeholder='Search location'></input>
-        <button>Search</button>
+        <StyledInput type='text' placeholder='Search location'></StyledInput>
+        <StyledButton>Search</StyledButton>
       </InputContainer>
 
       <CommonContainer>
-        <h2>Common Locations</h2>
-        <p>London</p>
-        <p>New York</p>
-        <p>Barcelona</p>
+        <CommonLocations>Common Locations</CommonLocations>
+        {DUMMY_COMMON_LOCATIONS.map((loc) => (
+          <CommonLocation>
+            <CommonLocationTitle>{loc.title}</CommonLocationTitle>
+            <CommonLocationArrow>{'>'}</CommonLocationArrow>
+          </CommonLocation>
+        ))}
       </CommonContainer>
     </>
   );

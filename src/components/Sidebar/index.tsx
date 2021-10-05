@@ -5,6 +5,7 @@ import SidebarMenu from './SidebarMenu';
 
 const SidebarWrapper = styled.div`
   width: 500px;
+  min-width: 325px;
   height: 100vh;
   background: #1e213a;
   display: flex;
