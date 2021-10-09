@@ -1,7 +1,7 @@
 import { Forecast } from '../interfaces/forecast';
 
 const API_KEY = process.env.REACT_APP_API_KEY; // UNSAFE
-const API_PATH = 'http://api.openweathermap.org/data/2.5';
+const API_PATH = process.env.REACT_APP_API_URL;
 const UNITS = 'units=metric';
 
 const DUMMY_FORECAST: Forecast = {
