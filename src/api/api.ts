@@ -1,6 +1,6 @@
 import { Forecast } from '../interfaces/forecast';
 
-const API_KEY = '0ea7a6f50f0282b54e96293809c27908';
+const API_KEY = process.env.REACT_APP_API_KEY; // UNSAFE
 const API_PATH = 'http://api.openweathermap.org/data/2.5';
 const UNITS = 'units=metric';
 
@@ -26,7 +26,7 @@ const DUMMY_FORECAST: Forecast = {
   airPressure: { title: 'Air Pressure', value: 998 },
 };
 
-/* export const getCurrentForecast = async () => {
+export const getCurrentForecast = async (): Promise<Forecast> => {
   const response = await fetch(
     `${API_PATH}/weather?q=Lisbon&appid=${API_KEY}&${UNITS}`
   );
@@ -34,21 +34,27 @@ const DUMMY_FORECAST: Forecast = {
 
   const ForecastObj: Forecast = {
     name: data.name,
+    weather: {
+      main: data.weather[0].main,
+      description: data.weather[0].description,
+      icon: data.weather[0].icon,
+    },
     temperature: {
       temp: data.main.temp,
       maxTemp: data.main.temp_max,
       minTemp: data.main.temp_min,
     },
     wind: {
+      title: 'Wind Status',
       speed: data.wind.speed,
       direction: data.wind.deg,
     },
-    humidity: data.main.humidity,
-    visibility: data.visibility,
-    airPressure: data.main.pressure,
+    humidity: { title: 'Humidity', value: data.main.humidity },
+    visibility: { title: 'visibility', value: data.visibility },
+    airPressure: { title: 'Air Pressure', value: data.main.pressure },
   };
 
-  //console.log(ForecastObj);
+  console.log(ForecastObj);
   //console.log(data);
 
   if (!response.ok) {
@@ -56,8 +62,8 @@ const DUMMY_FORECAST: Forecast = {
   }
 
   return ForecastObj;
-}; */
-
-export const getCurrentForecast = () => {
-  return DUMMY_FORECAST;
 };
+
+/* export const getCurrentForecast = () => {
+  return DUMMY_FORECAST;
+}; */

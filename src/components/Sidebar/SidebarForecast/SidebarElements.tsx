@@ -41,7 +41,7 @@ export const InformationContainer = styled.div`
 `;
 
 export const Temperature = styled.h1`
-  font-size: 144px;
+  font-size: 75px;
   font-weight: 500;
 `;
 
@@ -50,40 +50,41 @@ export const TemperatureDescription = styled.div`
   font-weight: 500;
 `;
 
-export const FooterContainter = styled.div``;
+export const FooterContainter = styled.div`
+  width: 100%;
+  padding: 2rem;
+`;
 
 export const DateContainer = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 1rem;
+  margin: 2rem;
+  justify-content: space-between;
 `;
 
 export const Today = styled.p`
   font-size: 18px;
   font-weight: 500;
-  margin-right: 1rem;
 `;
 
 export const Date = styled.p`
   font-size: 18px;
   font-weight: 500;
-  margin-left: 1rem;
 `;
 
 export const LocationContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 1rem;
+  justify-content: center;
 `;
 
 export const Icon = styled.p`
   font-size: 18px;
   font-weight: 500;
-  margin-right: 1rem;
 `;
 
 export const City = styled.p`
   font-size: 18px;
   font-weight: 500;
-  margin-left: 1rem;
 `;

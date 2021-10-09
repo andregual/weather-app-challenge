@@ -21,8 +21,7 @@ const App: React.FC = () => {
   const [unit, setUnit] = useState<string | null | undefined>('ºC');
 
   useEffect(() => {
-    const forecastObj = getCurrentForecast();
-    setForecast(forecastObj);
+    getCurrentForecast().then((res) => setForecast(res));
   }, []);
 
   return (

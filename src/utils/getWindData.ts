@@ -1,4 +1,6 @@
-export const getWindDirection = (deg: number | null | undefined) => {
+export const getWindDirection = (
+  deg: number | null | undefined
+): string | null | undefined => {
   if (deg) {
     let val = Math.floor(deg / 22.5 + 0.5);
     let directions = [

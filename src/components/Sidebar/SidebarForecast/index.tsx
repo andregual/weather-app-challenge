@@ -19,6 +19,7 @@ import {
 import LightCloud from '../../../assets/images/LightCloud.png';
 import { ForecastContext } from '../../../context/forecast-context';
 import { UnitContext } from '../../../context/unit-context';
+import { getCurrentDate } from '../../../utils/getCurrentDate';
 
 const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
   children,
@@ -26,6 +27,8 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
 }) => {
   const forecast = useContext(ForecastContext);
   const unit = useContext(UnitContext);
+
+  const currentDate = getCurrentDate();
 
   return (
     <>
@@ -44,7 +47,7 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
 
       <InformationContainer>
         <Temperature>
-          {forecast?.temperature.temp}
+          {forecast?.temperature.temp.toFixed(1)}
           {unit}
         </Temperature>
         <TemperatureDescription>
@@ -53,10 +56,10 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
         <FooterContainter>
           <DateContainer>
             <Today>Today</Today>
-            <Date>Fri. 5 jun</Date>
+            <Icon>*</Icon>
+            <Date>{currentDate}</Date>
           </DateContainer>
           <LocationContainer>
-            <Icon>*</Icon>
             <City>{forecast?.name}</City>
           </LocationContainer>
         </FooterContainter>
