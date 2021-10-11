@@ -1,4 +1,7 @@
+import { Temperature } from "./temperature";
+
 export interface Forecast {
+  coord: { lat: number; lon: number };
   name: string;
   weather: {
     main: string;
@@ -18,4 +21,5 @@ export interface Forecast {
   humidity: { title: string; value: number };
   visibility: { title: string; value: number };
   airPressure: { title: string; value: number };
+  daily?: Temperature[] | null
 }

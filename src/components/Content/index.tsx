@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { ForecastContext } from '../../context/forecast-context';
 import HeaderButton from '../Button';
 import ForecastCard from '../ForecastCard';
 import HighlightCard from '../HighlightCard';
@@ -49,7 +50,10 @@ const HighlightStatistics = styled.div`
   grid-gap: 2rem;
 `;
 
-const Content = () => {
+const Content:React.FC = () => {
+
+  const forecastCtx = useContext(ForecastContext);
+
   return (
     <ContentContainer>
       <HeaderContainer>
@@ -58,11 +62,7 @@ const Content = () => {
       </HeaderContainer>
 
       <ForecastContainer>
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
-        <ForecastCard />
+        {}
       </ForecastContainer>
 
       <HighlightContainer>

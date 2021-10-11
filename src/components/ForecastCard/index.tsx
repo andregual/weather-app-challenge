@@ -28,14 +28,14 @@ const MaxTemperature = styled.div``;
 
 const MinTemperature = styled.div``;
 
-const ForecastCard = () => {
+const ForecastCard:React.FC<{}> = (props) => {
   return (
     <Wrapper>
       <Day>Tomorrow</Day>
       <Image src={Clear}></Image>
       <TemperatureContainer>
-        <MaxTemperature>16ºC</MaxTemperature>
-        <MinTemperature>11ºC</MinTemperature>
+        <MaxTemperature>{}</MaxTemperature>
+        <MinTemperature>{}</MinTemperature>
       </TemperatureContainer>
     </Wrapper>
   );

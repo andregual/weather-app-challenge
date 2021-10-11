@@ -1,0 +1,21 @@
+const DUMMY_FORECAST: Forecast = {
+  name: 'Lisbon',
+  weather: {
+    main: 'Rain',
+    description: 'light rain',
+    icon: '10n',
+  },
+  temperature: {
+    temp: 18,
+    maxTemp: 19,
+    minTemp: 16.5,
+  },
+  wind: {
+    title: 'Wind Status',
+    speed: 20,
+    direction: 320,
+  },
+  humidity: { title: 'Humidity', value: 60 },
+  visibility: { title: 'visibility', value: 10000 },
+  airPressure: { title: 'Air Pressure', value: 998 },
+};
