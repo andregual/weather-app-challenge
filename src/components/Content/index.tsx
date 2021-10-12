@@ -4,6 +4,7 @@ import { ForecastContext } from '../../context/forecast-context';
 import HeaderButton from '../Button';
 import ForecastCard from '../ForecastCard';
 import HighlightCard from '../HighlightCard';
+import { getFutureDates } from '../../utils/getFutureDates';
 
 const ContentContainer = styled.div`
   padding-inline: 8%;
@@ -50,19 +51,28 @@ const HighlightStatistics = styled.div`
   grid-gap: 2rem;
 `;
 
-const Content:React.FC = () => {
-
+const Content: React.FC = () => {
   const forecastCtx = useContext(ForecastContext);
+
+  const futureDates = getFutureDates();
 
   return (
     <ContentContainer>
       <HeaderContainer>
-        <CelciusButton>ºC</CelciusButton>
+        <CelciusButton
+          onClick={() => {
+            console.log(getFutureDates());
+          }}
+        >
+          ºC
+        </CelciusButton>
         <FahrenheitButton>ºF</FahrenheitButton>
       </HeaderContainer>
 
       <ForecastContainer>
-        {}
+        {forecastCtx?.daily?.map((dailyForecast, idx) => (
+          <ForecastCard key={idx} temperature={dailyForecast} date={futureDates[idx]}></ForecastCard>
+        ))}
       </ForecastContainer>
 
       <HighlightContainer>

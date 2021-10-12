@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Clear from '../../assets/images/Clear.png';
+import { Temperature } from '../../interfaces/temperature';
 
 const Wrapper = styled.div`
   height: 180px;
@@ -28,14 +29,17 @@ const MaxTemperature = styled.div``;
 
 const MinTemperature = styled.div``;
 
-const ForecastCard:React.FC<{}> = (props) => {
+const ForecastCard: React.FC<{ temperature: Temperature; date: string }> = ({
+  temperature,
+  date,
+}) => {
   return (
     <Wrapper>
-      <Day>Tomorrow</Day>
+      <Day>{date}</Day>
       <Image src={Clear}></Image>
       <TemperatureContainer>
-        <MaxTemperature>{}</MaxTemperature>
-        <MinTemperature>{}</MinTemperature>
+        <MaxTemperature>{temperature.max.toFixed(1)}</MaxTemperature>
+        <MinTemperature>{temperature.min.toFixed(1)}</MinTemperature>
       </TemperatureContainer>
     </Wrapper>
   );

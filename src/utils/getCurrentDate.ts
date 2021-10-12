@@ -6,4 +6,4 @@ export const getCurrentDate = (): string => {
     day: 'numeric',
   };
   return date.toLocaleDateString('en', options);
-};
+}; 
