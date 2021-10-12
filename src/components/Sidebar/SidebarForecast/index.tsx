@@ -18,8 +18,8 @@ import {
 } from './SidebarElements';
 import LightCloud from '../../../assets/images/LightCloud.png';
 import { ForecastContext } from '../../../context/forecast-context';
-import { UnitContext } from '../../../context/unit-context';
 import { getCurrentDate } from '../../../utils/getCurrentDate';
+import { UnitContext } from '../../../context/unit-context';
 
 const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
   children,
@@ -46,10 +46,7 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
       </ImageContainer>
 
       <InformationContainer>
-        <Temperature>
-          {forecast?.temperature.temp.toFixed(1)}
-          {unit}
-        </Temperature>
+        <Temperature>{forecast?.temperature.temp.toFixed(1)}{unit.currentUnit.temperature}</Temperature>
         <TemperatureDescription>
           {forecast?.weather.main}
         </TemperatureDescription>

@@ -53,36 +53,39 @@ const HighlightStatistics = styled.div`
 
 const Content: React.FC = () => {
   const forecastCtx = useContext(ForecastContext);
-
   const futureDates = getFutureDates();
+
+  const renderHighlightCards = () => {
+    return (
+      <HighlightStatistics>
+        <HighlightCard highlight='wind' />
+        <HighlightCard highlight='humidity' />
+        <HighlightCard highlight='visibility' />
+        <HighlightCard highlight='airPressure' />
+      </HighlightStatistics>
+    );
+  };
 
   return (
     <ContentContainer>
       <HeaderContainer>
-        <CelciusButton
-          onClick={() => {
-            console.log(getFutureDates());
-          }}
-        >
-          ºC
-        </CelciusButton>
+        <CelciusButton>ºC</CelciusButton>
         <FahrenheitButton>ºF</FahrenheitButton>
       </HeaderContainer>
 
       <ForecastContainer>
         {forecastCtx?.daily?.map((dailyForecast, idx) => (
-          <ForecastCard key={idx} temperature={dailyForecast} date={futureDates[idx]}></ForecastCard>
+          <ForecastCard
+            key={idx}
+            temperature={dailyForecast}
+            date={futureDates[idx]}
+          ></ForecastCard>
         ))}
       </ForecastContainer>
 
       <HighlightContainer>
         <HighlightTitle>Today's Highlights</HighlightTitle>
-        <HighlightStatistics>
-          <HighlightCard highlight='wind' />
-          <HighlightCard highlight='humidity' />
-          <HighlightCard highlight='visibility' />
-          <HighlightCard highlight='airPressure' />
-        </HighlightStatistics>
+        {renderHighlightCards()}
       </HighlightContainer>
     </ContentContainer>
   );

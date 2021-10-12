@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Content from './components/Content';
 import Sidebar from './components/Sidebar';
 import { ForecastProvider } from './context/forecast-context';
+import { UnitProvider } from './context/unit-context';
 
 // some other
 
@@ -18,8 +19,10 @@ const App: React.FC = () => {
       <GlobalStyle />
       <GlobalWrapper>
         <ForecastProvider>
-          <Sidebar></Sidebar>
-          <Content></Content>
+          <UnitProvider>
+            <Sidebar></Sidebar>
+            <Content></Content>
+          </UnitProvider>
         </ForecastProvider>
       </GlobalWrapper>
     </>
