@@ -5,9 +5,13 @@ const API_KEY = process.env.REACT_APP_API_KEY; // UNSAFE
 const API_PATH = process.env.REACT_APP_API_URL;
 const UNITS = 'units=metric';
 
-export const getForecast = async (): Promise<Forecast> => {
+export const getForecast = async (location?: string): Promise<Forecast> => {
+  if(!location) {
+    location = 'Lisbon'
+  }
+
   const response = await fetch(
-    `${API_PATH}/weather?q=Lisbon&appid=${API_KEY}&${UNITS}`
+    `${API_PATH}/weather?q=${location}&appid=${API_KEY}&${UNITS}`
   );
   const data = await response.json();
 

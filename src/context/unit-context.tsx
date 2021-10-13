@@ -1,12 +1,5 @@
 import { createContext, useState } from 'react';
-export interface Unit {
-  name: string;
-  temperature: string;
-  wind: string;
-  humidity: string;
-  visibility: string;
-  airPressure: string;
-}
+import { Unit } from '../interfaces/unit';
 
 export const imperial: Unit = {
   name: 'Imperial',

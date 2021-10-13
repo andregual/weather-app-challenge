@@ -39,13 +39,26 @@ export const StyledButton = styled.button`
   font-family: 'Raleway', sans-serif;
 `;
 
+export const CommonLocationWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const CommonLocation = styled.div`
   padding: 1rem;
   margin-block: 2rem;
-  border: 1px solid #616475;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
+  border: 1px solid #616475;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    border: 1px solid #eae7e7;
+    color: black;
+    background: #eae7e7;
+  }
 `;
 
 export const CommonLocationTitle = styled.p``;

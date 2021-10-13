@@ -5,6 +5,7 @@ import HeaderButton from '../Button';
 import ForecastCard from '../ForecastCard';
 import HighlightCard from '../HighlightCard';
 import { getFutureDates } from '../../utils/getFutureDates';
+import { UnitContext } from '../../context/unit-context';
 
 const ContentContainer = styled.div`
   padding-inline: 8%;
@@ -53,15 +54,17 @@ const HighlightStatistics = styled.div`
 
 const Content: React.FC = () => {
   const forecastCtx = useContext(ForecastContext);
+  const forecast = forecastCtx?.forecast;
+  const unit = useContext(UnitContext);
   const futureDates = getFutureDates();
 
   const renderHighlightCards = () => {
     return (
       <HighlightStatistics>
-        <HighlightCard highlight='wind' />
-        <HighlightCard highlight='humidity' />
-        <HighlightCard highlight='visibility' />
-        <HighlightCard highlight='airPressure' />
+        <HighlightCard highlight='wind' unit={unit.currentUnit.wind}/>
+        <HighlightCard highlight='humidity' unit={unit.currentUnit.humidity}/>
+        <HighlightCard highlight='visibility' unit={unit.currentUnit.visibility}/>
+        <HighlightCard highlight='airPressure' unit={unit.currentUnit.airPressure}/>
       </HighlightStatistics>
     );
   };
@@ -74,7 +77,7 @@ const Content: React.FC = () => {
       </HeaderContainer>
 
       <ForecastContainer>
-        {forecastCtx?.daily?.map((dailyForecast, idx) => (
+        {forecast?.daily?.map((dailyForecast, idx) => (
           <ForecastCard
             key={idx}
             temperature={dailyForecast}

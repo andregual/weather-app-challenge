@@ -30,18 +30,29 @@ const WindDirectionText = styled.p`
   font-size: 14px;
 `;
 
-const HighlightCard: React.FC<{ highlight: string }> = ({ highlight }) => {
+const UnitText = styled.span`
+  font-size: 46px;
+  font-weight: 500;
+`;
+
+const HighlightCard: React.FC<{ highlight: string; unit: string }> = ({
+  highlight,
+  unit,
+}) => {
   const forecastCtx = useContext(ForecastContext);
+  const forecast = forecastCtx?.forecast;
 
   if (highlight === 'wind') {
     return (
       <Wrapper>
-        <CardTitle>{forecastCtx?.wind.title}</CardTitle>
-        <CardValue>{forecastCtx?.wind.speed}</CardValue>
+        <CardTitle>{forecast?.wind.title}</CardTitle>
+        <CardValue>
+          {forecast?.wind.speed} <UnitText>{unit}</UnitText>
+        </CardValue>
         <WindDirectionContainer>
           <WindDirectionIcon></WindDirectionIcon>
           <WindDirectionText>
-            {getWindDirection(forecastCtx?.wind.direction)}
+            {getWindDirection(forecast?.wind.direction)}
           </WindDirectionText>
         </WindDirectionContainer>
       </Wrapper>
@@ -49,23 +60,29 @@ const HighlightCard: React.FC<{ highlight: string }> = ({ highlight }) => {
   } else if (highlight === 'humidity') {
     return (
       <Wrapper>
-        <CardTitle>{forecastCtx?.humidity.title}</CardTitle>
-        <CardValue>{forecastCtx?.humidity.value}</CardValue>
+        <CardTitle>{forecast?.humidity.title}</CardTitle>
+        <CardValue>
+          {forecast?.humidity.value} <UnitText>{unit}</UnitText>
+        </CardValue>
       </Wrapper>
     );
   } else if (highlight === 'visibility') {
     return (
       <Wrapper>
-        <CardTitle>{forecastCtx?.visibility.title}</CardTitle>
-        <CardValue>{forecastCtx?.visibility.value}</CardValue>
+        <CardTitle>{forecast?.visibility.title}</CardTitle>
+        <CardValue>
+          {forecast?.visibility.value} <UnitText>{unit}</UnitText>
+        </CardValue>
       </Wrapper>
     );
   }
 
   return (
     <Wrapper>
-      <CardTitle>{forecastCtx?.airPressure.title}</CardTitle>
-      <CardValue>{forecastCtx?.airPressure.value}</CardValue>
+      <CardTitle>{forecast?.airPressure.title}</CardTitle>
+      <CardValue>
+        {forecast?.airPressure.value} <UnitText>{unit}</UnitText>
+      </CardValue>
     </Wrapper>
   );
 };

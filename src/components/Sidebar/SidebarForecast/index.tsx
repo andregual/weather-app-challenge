@@ -25,7 +25,8 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
   children,
   toggleMenu,
 }) => {
-  const forecast = useContext(ForecastContext);
+  const forecastCtx = useContext(ForecastContext);
+  const forecast = forecastCtx?.forecast;
   const unit = useContext(UnitContext);
 
   const currentDate = getCurrentDate();
@@ -34,11 +35,7 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
     <>
       <HeaderContainer>
         <SearchButton onClick={toggleMenu}>Search for places</SearchButton>
-        <LocationButton
-          onClick={() => {
-            console.log(forecast);
-          }}
-        ></LocationButton>
+        <LocationButton></LocationButton>
       </HeaderContainer>
 
       <ImageContainer>
@@ -46,7 +43,10 @@ const SidebarForecast: React.FC<{ toggleMenu: () => void }> = ({
       </ImageContainer>
 
       <InformationContainer>
-        <Temperature>{forecast?.temperature.temp.toFixed(1)}{unit.currentUnit.temperature}</Temperature>
+        <Temperature>
+          {forecast?.temperature.temp.toFixed(1)}
+          {unit.currentUnit.temperature}
+        </Temperature>
         <TemperatureDescription>
           {forecast?.weather.main}
         </TemperatureDescription>
