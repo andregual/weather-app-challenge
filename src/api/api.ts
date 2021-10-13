@@ -1,17 +1,25 @@
+import { useContext } from 'react';
+import { UnitContext } from '../context/unit-context';
 import { Forecast } from '../interfaces/forecast';
 import { Temperature } from '../interfaces/temperature';
 
 const API_KEY = process.env.REACT_APP_API_KEY; // UNSAFE
 const API_PATH = process.env.REACT_APP_API_URL;
-const UNITS = 'units=metric';
 
-export const getForecast = async (location?: string): Promise<Forecast> => {
-  if(!location) {
-    location = 'Lisbon'
+export const getForecast = async (
+  location?: string,
+  unit?: string
+): Promise<Forecast> => {
+  if (!unit) {
+    unit = 'metric';
+  }
+
+  if (!location) {
+    location = 'Lisbon';
   }
 
   const response = await fetch(
-    `${API_PATH}/weather?q=${location}&appid=${API_KEY}&${UNITS}`
+    `${API_PATH}/weather?q=${location}&appid=${API_KEY}&units=${unit}`
   );
   const data = await response.json();
 
@@ -47,7 +55,7 @@ export const getForecast = async (location?: string): Promise<Forecast> => {
   }
 
   const responseWeekly = await fetch(
-    `${API_PATH}/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=hourly,current,minutely,alerts&appid=${API_KEY}&${UNITS}`
+    `${API_PATH}/onecall?lat=${data.coord.lat}&lon=${data.coord.lon}&exclude=hourly,current,minutely,alerts&appid=${API_KEY}&units=${unit}`
   );
   const dataWeekly = await responseWeekly.json();
 

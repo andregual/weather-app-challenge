@@ -6,6 +6,7 @@ import ForecastCard from '../ForecastCard';
 import HighlightCard from '../HighlightCard';
 import { getFutureDates } from '../../utils/getFutureDates';
 import { UnitContext } from '../../context/unit-context';
+import { imperial, metric } from '../../interfaces/unit';
 
 const ContentContainer = styled.div`
   padding-inline: 8%;
@@ -61,19 +62,49 @@ const Content: React.FC = () => {
   const renderHighlightCards = () => {
     return (
       <HighlightStatistics>
-        <HighlightCard highlight='wind' unit={unit.currentUnit.wind}/>
-        <HighlightCard highlight='humidity' unit={unit.currentUnit.humidity}/>
-        <HighlightCard highlight='visibility' unit={unit.currentUnit.visibility}/>
-        <HighlightCard highlight='airPressure' unit={unit.currentUnit.airPressure}/>
+        <HighlightCard highlight='wind' unit={unit.currentUnit.wind} />
+        <HighlightCard highlight='humidity' unit={unit.currentUnit.humidity} />
+        <HighlightCard
+          highlight='visibility'
+          unit={unit.currentUnit.visibility}
+        />
+        <HighlightCard
+          highlight='airPressure'
+          unit={unit.currentUnit.airPressure}
+        />
       </HighlightStatistics>
     );
+  };
+
+  const unitToCelcius = async () => {
+    if (unit.currentUnit.temperature === 'ºC') {
+      return;
+    }
+
+    await unit.updateUnit(metric);
+
+    if (forecast && forecast.name) {
+      await forecastCtx?.newForecast(forecast?.name, metric.name);
+    }
+  };
+
+  const unitToFahrenheit = async () => {
+    if (unit.currentUnit.temperature === 'ºF') {
+      return;
+    }
+
+    await unit.updateUnit(imperial);
+
+    if (forecast && forecast.name) {
+      await forecastCtx?.newForecast(forecast?.name, imperial.name);
+    }
   };
 
   return (
     <ContentContainer>
       <HeaderContainer>
-        <CelciusButton>ºC</CelciusButton>
-        <FahrenheitButton>ºF</FahrenheitButton>
+        <CelciusButton onClick={unitToCelcius}>ºC</CelciusButton>
+        <FahrenheitButton onClick={unitToFahrenheit}>ºF</FahrenheitButton>
       </HeaderContainer>
 
       <ForecastContainer>

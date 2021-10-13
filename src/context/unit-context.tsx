@@ -1,33 +1,15 @@
 import { createContext, useState } from 'react';
-import { Unit } from '../interfaces/unit';
-
-export const imperial: Unit = {
-  name: 'Imperial',
-  temperature: 'ºF',
-  wind: 'mph',
-  humidity: '%',
-  visibility: 'miles',
-  airPressure: 'hPa',
-};
-
-export const metric: Unit = {
-  name: 'Metric',
-  temperature: 'ºC',
-  wind: 'kmh',
-  humidity: '%',
-  visibility: 'km',
-  airPressure: 'hPa',
-};
+import { metric, Unit } from '../interfaces/unit';
 
 export const UnitContext = createContext({
   currentUnit: metric,
-  updateUnit: (newUnit: any) => {},
+  updateUnit: (newUnit: Unit) => {},
 });
 
 export const UnitProvider: React.FC = ({ children }) => {
   const [unit, setUnit] = useState<Unit>(metric);
 
-  const updateUnit = (newUnit: any) => {
+  const updateUnit = (newUnit: Unit) => {
     setUnit(newUnit);
   };
 
